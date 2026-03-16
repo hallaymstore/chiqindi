@@ -1,0 +1,23 @@
+<%- include('../partials/public-page-hero', { title: 'Qanday ishlaydi', description: 'ChiqindiBor plastik chiqindilarni topshirishdan boshlab, qayta ishlash zavodigacha bo‘lgan zanjirni boshqaradi.' }) %>
+
+<section class="section-space section-light">
+  <div class="container">
+    <div class="list-stack">
+      <% steps.forEach((step, index) => { %>
+        <div class="feature-card timeline-step">
+          <div class="step-index"><%= index + 1 %></div>
+          <div>
+            <h3><i class="<%= step.icon %>"></i> <%= step.title %></h3>
+            <p><%= step.text %></p>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+    <div class="feature-grid mt-5">
+      <% benefits.forEach((item) => { %>
+        <div class="feature-card"><div class="icon-bubble"><i class="ri-leaf-line"></i></div><p class="mb-0"><%= item %></p></div>
+      <% }) %>
+    </div>
+  </div>
+</section>

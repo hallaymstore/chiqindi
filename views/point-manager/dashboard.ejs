@@ -1,0 +1,57 @@
+<div class="dashboard-stat-grid">
+  <div class="dashboard-stat-card">
+    <span>Kirimlar</span>
+    <h3><%= metrics.totals.incoming %></h3>
+    <p class="mb-0">Qabul kutilayotgan partiyalar</p>
+  </div>
+  <div class="dashboard-stat-card">
+    <span>Yakunlangan</span>
+    <h3><%= metrics.totals.completed %></h3>
+    <p class="mb-0">Punkt orqali yopilgan oqim</p>
+  </div>
+  <div class="dashboard-stat-card">
+    <span>Joriy qoldiq</span>
+    <h3><%= helpers.formatKg(metrics.totals.storedKg) %></h3>
+    <p class="mb-0">Ombordagi material</p>
+  </div>
+  <div class="dashboard-stat-card">
+    <span>Sig'im</span>
+    <h3><%= helpers.formatKg(metrics.totals.capacityKg) %></h3>
+    <p class="mb-0">Maksimal sig'im</p>
+  </div>
+</div>
+
+<div class="list-stack">
+  <% incomingPickups.forEach((item) => { %>
+    <div class="panel-card">
+      <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3">
+        <div>
+          <h3 class="mb-1"><%= item.user?.name %> - <%= item.category?.name %></h3>
+          <p class="mb-0"><%= item.address %></p>
+        </div>
+        <span class="<%= helpers.statusBadgeClass(item.status) %>"><%= helpers.formatStatus(item.status) %></span>
+      </div>
+      <form method="post" action="/point-manager/pickups/<%= item._id %>/review" class="row g-3">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <div class="col-md-4">
+          <label>Qaror</label>
+          <select class="form-select" name="decision">
+            <option value="approve">Qabul qilish</option>
+            <option value="reject">Rad etish</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label>Haqiqiy vazn</label>
+          <input class="form-control" type="number" step="0.1" name="actualWeight" value="<%= item.actualWeight || item.estimatedWeight %>" />
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+          <button class="btn btn-gradient w-100" type="submit">Saqlash</button>
+        </div>
+      </form>
+    </div>
+  <% }) %>
+
+  <% if (!incomingPickups.length) { %>
+    <div class="empty-state">Qabul kutilayotgan partiya yo'q.</div>
+  <% } %>
+</div>

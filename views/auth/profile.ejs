@@ -1,0 +1,24 @@
+<div class="row g-4">
+  <div class="col-lg-4">
+    <div class="panel-card panel-dark text-center">
+      <img src="<%= currentUser.avatar %>" alt="avatar" class="rounded-circle mb-3" style="width: 110px; height: 110px; object-fit: cover;" />
+      <h3><%= currentUser.name %></h3>
+      <p class="mb-0"><%= helpers.formatRole(currentUser.role) %></p>
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <div class="panel-card">
+      <form method="post" action="/profil" enctype="multipart/form-data" class="row g-3">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <div class="col-md-6"><label>To‘liq ism</label><input class="form-control" type="text" name="name" value="<%= currentUser.name %>" required /></div>
+        <div class="col-md-6"><label>Email</label><input class="form-control" type="email" name="email" value="<%= currentUser.email %>" required /></div>
+        <div class="col-md-6"><label>Telefon</label><input class="form-control" type="text" name="phone" value="<%= currentUser.phone || '' %>" /></div>
+        <div class="col-md-6"><label>Kompaniya</label><input class="form-control" type="text" name="companyName" value="<%= currentUser.companyName || '' %>" /></div>
+        <div class="col-md-6"><label>Hudud</label><input class="form-control" type="text" name="region" value="<%= currentUser.region || '' %>" /></div>
+        <div class="col-md-6"><label>Avatar</label><input class="form-control" type="file" name="avatar" accept="image/*" /></div>
+        <div class="col-12"><label>Manzil</label><input class="form-control" type="text" name="address" value="<%= currentUser.address || '' %>" /></div>
+        <div class="col-12"><button class="btn btn-gradient" type="submit">Profilni yangilash</button></div>
+      </form>
+    </div>
+  </div>
+</div>

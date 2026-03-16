@@ -1,0 +1,27 @@
+<div class="panel-card table-responsive">
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th>Sana</th>
+        <th>Baholangan summa</th>
+        <th>Yakuniy summa</th>
+        <th>Status</th>
+        <th>Usul</th>
+        <th>Tranzaksiya ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% items.forEach((item) => { %>
+        <tr>
+          <td><%= helpers.formatDate(item.createdAt) %></td>
+          <td><%= helpers.formatCurrency(item.estimatedAmount) %></td>
+          <td><%= helpers.formatCurrency(item.finalAmount) %></td>
+          <td><span class="<%= helpers.statusBadgeClass(item.paymentStatus) %>"><%= helpers.formatStatus(item.paymentStatus) %></span></td>
+          <td><%= item.paymentMethod %></td>
+          <td><%= item.transactionId || '—' %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <% if (!items.length) { %><div class="empty-state">To‘lov yozuvlari hali mavjud emas.</div><% } %>
+</div>

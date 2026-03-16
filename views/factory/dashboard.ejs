@@ -1,0 +1,30 @@
+<div class="dashboard-stat-grid">
+  <div class="dashboard-stat-card"><span>Kelib tushayotganlar</span><h3><%= metrics.totals.incoming %></h3><p class="mb-0">Qabul kutilayotgan partiya</p></div>
+  <div class="dashboard-stat-card"><span>Yakunlanganlar</span><h3><%= metrics.totals.completed %></h3><p class="mb-0">Qabul qilingan partiya</p></div>
+  <div class="dashboard-stat-card"><span>Qayta ishlangan</span><h3><%= helpers.formatKg(metrics.totals.processedKg) %></h3><p class="mb-0">Umumiy qayta ishlangan hajm</p></div>
+  <div class="dashboard-stat-card"><span>Ta'minotchilar</span><h3><%= metrics.totals.suppliers %></h3><p class="mb-0">Faol yetkazib beruvchilar</p></div>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-7">
+    <div class="panel-card">
+      <h3 class="mb-3">Xarid narxlari</h3>
+      <form method="post" action="/factory/price" class="row g-3">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <div class="col-md-6"><label>Toifa</label><select class="form-select" name="categoryId"><% categories.forEach((item) => { %><option value="<%= item._id %>"><%= item.name %></option><% }) %></select></div>
+        <div class="col-md-6"><label>Narx / kg</label><input class="form-control" type="number" name="pricePerKg" step="1" required /></div>
+        <div class="col-12"><button class="btn btn-gradient" type="submit">Narxni saqlash</button></div>
+      </form>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <div class="panel-card panel-dark">
+      <h3>Qayta ishlangan hajm</h3>
+      <form method="post" action="/factory/process" class="row g-3 mt-2">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <div class="col-12"><label>Qayta ishlangan kg</label><input class="form-control" type="number" name="processedKg" step="0.1" required /></div>
+        <div class="col-12"><button class="btn btn-gradient" type="submit">Yangilash</button></div>
+      </form>
+    </div>
+  </div>
+</div>

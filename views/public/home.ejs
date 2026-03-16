@@ -1,0 +1,325 @@
+<section class="hero-section">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-6" data-aos="fade-up">
+        <div class="hero-card hero-copy-shell">
+          <span class="eyebrow"><i class="ri-recycle-line"></i> Premium eco-tech platforma</span>
+          <h1 class="hero-title">
+            <%= siteSettings.heroTitle %>
+            <span class="accent">pickup, analitika va qayta ishlash</span>
+            bilan boshqariladi.
+          </h1>
+          <p class="hero-copy">
+            <%= siteSettings.heroSubtitle %>
+            ChiqindiBor aholi, punkt, logistika va zavodlarni yagona operatsion tizimga ulaydi.
+          </p>
+          <div class="hero-actions">
+            <a href="/register" class="btn btn-gradient">Platformani boshlash</a>
+            <a href="/aloqa" class="btn btn-ghost">Korporativ hamkorlik</a>
+          </div>
+          <div class="trust-strip">
+            <div class="trust-chip"><i class="ri-shield-check-line"></i> Shaffof hisob-kitob</div>
+            <div class="trust-chip"><i class="ri-truck-line"></i> Pickup va logistika</div>
+            <div class="trust-chip"><i class="ri-map-pin-2-line"></i> Punktlar xaritasi</div>
+          </div>
+          <div class="hero-metrics">
+            <div class="hero-metric">
+              <span>To'lovlar</span>
+              <strong>Avtomatlashtirilgan payout</strong>
+            </div>
+            <div class="hero-metric">
+              <span>Monitoring</span>
+              <strong>Tasdiqlangan va yo'lda</strong>
+            </div>
+            <div class="hero-metric">
+              <span>Aloqa</span>
+              <strong><%= siteSettings.supportPhone %></strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="hero-card hero-showcase">
+          <div class="hero-glass-note">
+            <strong>Operatsion ko'rinish</strong>
+            <span>Topshiriqdan zavodgacha bo'lgan oqim bir panelda.</span>
+          </div>
+          <img src="/images/landing-hero-eco.svg" alt="ChiqindiBor platformasi uchun ekologik logistika illyustratsiyasi" class="hero-illustration" />
+          <div class="floating-chip chip-top">
+            <strong>+<%= stats[0]?.value || 0 %></strong>
+            <span>Faol foydalanuvchilar</span>
+          </div>
+          <div class="floating-chip chip-bottom">
+            <strong><%= helpers.formatKg(points.length ? points.length * 1000 : 0) %></strong>
+            <span>Punkt va pickup quvvati</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-space section-light pt-0">
+  <div class="container">
+    <div class="stat-grid" data-aos="fade-up">
+      <% stats.forEach((item) => { %>
+        <div class="metric-card glow-ring">
+          <span><%= item.label %></span>
+          <h3 data-counter="<%= item.value %>" data-suffix="<%= item.suffix || '' %>">0</h3>
+          <p class="mb-0">Ekotizim bo'yicha tasdiqlangan ko'rsatkich.</p>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section-space section-light">
+  <div class="container">
+    <div class="row g-4 align-items-center operation-layout">
+      <div class="col-lg-5" data-aos="fade-right">
+        <div class="media-card media-card-dark">
+          <img src="/images/landing-operations.svg" alt="Chiqindi topshirish jarayonining bosqichlari" />
+        </div>
+      </div>
+      <div class="col-lg-7" data-aos="fade-up">
+        <span class="eyebrow"><i class="ri-flow-chart"></i> Qanday ishlaydi</span>
+        <h2 class="mt-3 mb-3">Topshirish, pickup va qayta ishlash uchun to'liq jarayon</h2>
+        <p class="mb-4">
+          ChiqindiBor foydalanuvchi, haydovchi, punkt va zavod o'rtasidagi butun oqimni yagona raqamli jarayonga aylantiradi.
+        </p>
+        <div class="list-stack">
+          <% steps.forEach((step, index) => { %>
+            <div class="info-card timeline-step" data-aos="fade-up" data-aos-delay="<%= (index + 1) * 70 %>">
+              <div class="step-index"><%= index + 1 %></div>
+              <div>
+                <h3><i class="<%= step.icon %>"></i> <%= step.title %></h3>
+                <p class="mb-0"><%= step.text %></p>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-space section-light">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-5" data-aos="fade-up">
+        <span class="eyebrow"><i class="ri-star-smile-line"></i> Afzalliklar</span>
+        <h2 class="mt-3">Ekologik natija va daromad bir platformada</h2>
+        <p class="mb-0">
+          Operatsion soddalik, narxlar shaffofligi va hududiy nazorat birgalikda ishlashi uchun ishlab chiqilgan.
+        </p>
+      </div>
+      <div class="col-lg-7">
+        <div class="feature-grid">
+          <% benefits.forEach((item, index) => { %>
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="<%= index * 70 %>">
+              <div class="icon-bubble"><i class="ri-check-double-line"></i></div>
+              <p class="mb-0"><%= item %></p>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-space section-light">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+      <div>
+        <span class="eyebrow"><i class="ri-price-tag-3-line"></i> Narxlar</span>
+        <h2 class="mt-3 mb-0">Faol plastik kategoriyalar va bozor stavkalari</h2>
+      </div>
+      <a href="/narxlar" class="btn btn-soft">Barcha narxlarni ko'rish</a>
+    </div>
+
+    <% if (categories.length) { %>
+      <div class="category-grid">
+        <% categories.forEach((category, index) => { %>
+          <div class="pricing-card glow-ring" data-aos="fade-up" data-aos-delay="<%= index * 60 %>">
+            <div class="category-card-icon"><i class="<%= category.icon || 'ri-recycle-line' %>"></i></div>
+            <h3><%= category.name %></h3>
+            <p><%= category.description %></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <strong><%= helpers.formatCurrency(category.pricePerKg) %> / kg</strong>
+              <span class="badge-soft-primary">Faol</span>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <div class="empty-state">Hozircha narxlar ro'yxati mavjud emas.</div>
+    <% } %>
+  </div>
+</section>
+
+<section class="section-space section-light">
+  <div class="container">
+    <div class="row g-4 align-items-stretch">
+      <div class="col-lg-6" data-aos="fade-right">
+        <div class="table-card h-100">
+          <span class="eyebrow"><i class="ri-map-pin-line"></i> Qabul punktlari</span>
+          <h2 class="mt-3">Yaqin punktlar va yig'ish nuqtalari xaritada</h2>
+          <p class="mb-4">Xarita orqali punktlar, manzil va qabul qilinadigan toifalarni ko'ring.</p>
+          <div
+            class="leaflet-map"
+            data-points='<%- JSON.stringify(points.map((point) => ({ name: point.name, address: point.address, lat: point.location?.coordinates?.[1] || 41.2995, lng: point.location?.coordinates?.[0] || 69.2401 }))) %>'
+            data-lat="41.2995"
+            data-lng="69.2401"
+          ></div>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="media-card split-visual h-100">
+          <img src="/images/landing-network.svg" alt="Pickup, punkt va zavod ekotizimi" />
+          <div class="info-strip mt-4">
+            <span><i class="ri-building-2-line"></i> Zavodlar bilan integratsiya</span>
+            <span><i class="ri-route-line"></i> Oqim bo'yicha statuslar</span>
+            <span><i class="ri-bar-chart-box-line"></i> Hududiy analitika</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-space section-light">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-5" data-aos="fade-up">
+        <span class="eyebrow"><i class="ri-dashboard-line"></i> Dashboardlar</span>
+        <h2 class="mt-3">Har bir rol uchun alohida boshqaruv tajribasi</h2>
+        <p>
+          Sotuvchi, haydovchi, punkt menejeri, zavod va admin uchun alohida dashboardlar orqali butun operatsiya nazorat ostida bo'ladi.
+        </p>
+        <div class="feature-grid mt-4">
+          <div class="feature-card">
+            <div class="icon-bubble"><i class="ri-user-line"></i></div>
+            <h3>Sotuvchi</h3>
+            <p class="mb-0">Listing yaratish, pickup buyurtma qilish va to'lovlarni kuzatish.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon-bubble"><i class="ri-truck-line"></i></div>
+            <h3>Haydovchi</h3>
+            <p class="mb-0">Marshrut, tasdiq rasmi va status boshqaruvi.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon-bubble"><i class="ri-building-4-line"></i></div>
+            <h3>Punkt va zavod</h3>
+            <p class="mb-0">Inventar, transfer va qayta ishlash oqimi nazorati.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7" data-aos="zoom-in">
+        <div class="story-card">
+          <div class="logo-rail">
+            <span>Aholi</span>
+            <span>Pickup</span>
+            <span>Punkt</span>
+            <span>Zavod</span>
+            <span>Admin</span>
+          </div>
+          <p class="mb-0">
+            Xizmat ko'rsatish jarayoni, to'lovlar va ekologik natija bir-biridan uzilmagan yagona tizim sifatida ishlaydi.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-space section-light">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+      <div>
+        <span class="eyebrow"><i class="ri-message-3-line"></i> Fikrlar</span>
+        <h2 class="mt-3 mb-0">Platformadan foydalanayotganlar fikri</h2>
+      </div>
+    </div>
+    <div class="testimonial-grid">
+      <% testimonials.forEach((item, index) => { %>
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="<%= index * 80 %>">
+          <div class="quote-mark">"</div>
+          <p><%= item.quote %></p>
+          <strong><%= item.name %></strong>
+          <span><%= item.role %></span>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section-space section-light">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+      <div>
+        <span class="eyebrow"><i class="ri-building-2-line"></i> Hamkor zavodlar</span>
+        <h2 class="mt-3 mb-0">Qayta ishlovchi zavodlar va faol ishlab chiqaruvchilar</h2>
+      </div>
+      <a href="/hamkor-zavodlar" class="btn btn-soft">Hammasini ko'rish</a>
+    </div>
+
+    <% if (factories.length) { %>
+      <div class="partner-grid">
+        <% factories.forEach((factory) => { %>
+          <div class="partner-card">
+            <div class="icon-bubble"><i class="ri-building-line"></i></div>
+            <h3><%= factory.name %></h3>
+            <p><%= factory.description || "Qayta ishlash va procurement bo'yicha faol hamkor." %></p>
+            <div class="info-strip">
+              <span><i class="ri-map-pin-line"></i> <%= factory.region || 'Toshkent' %></span>
+              <span><i class="ri-recycle-line"></i> <%= factory.dailyCapacityKg || 0 %> kg/kun</span>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <div class="empty-state">Hamkor zavodlar ro'yxati hozircha mavjud emas.</div>
+    <% } %>
+  </div>
+</section>
+
+<section class="section-space section-light">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+      <div>
+        <span class="eyebrow"><i class="ri-article-line"></i> Blog</span>
+        <h2 class="mt-3 mb-0">Yangiliklar va foydali maqolalar</h2>
+      </div>
+      <a href="/blog" class="btn btn-soft">Barcha maqolalar</a>
+    </div>
+
+    <% if (posts.length) { %>
+      <div class="blog-grid">
+        <% posts.forEach((post) => { %>
+          <a class="blog-card" href="/blog/<%= post.slug %>">
+            <img src="<%= post.featuredImage || '/images/blog-placeholder.svg' %>" alt="<%= post.title %>" class="rounded-4 mb-3" />
+            <span class="badge-soft-primary mb-2"><%= helpers.formatDate(post.publishedAt || post.createdAt) %></span>
+            <h3><%= post.title %></h3>
+            <p><%= post.excerpt %></p>
+          </a>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <div class="empty-state">Blog uchun maqolalar tez orada joylanadi.</div>
+    <% } %>
+  </div>
+</section>
+
+<section class="section-space">
+  <div class="container">
+    <div class="page-hero-card text-center">
+      <span class="eyebrow"><i class="ri-rocket-line"></i> Hozir boshlang</span>
+      <h2 class="mt-3">Plastik chiqindini daromad manbaiga aylantirishni bugun boshlang</h2>
+      <p class="mb-4"><%= siteSettings.description %></p>
+      <div class="hero-actions justify-content-center">
+        <a href="/register" class="btn btn-gradient">Bepul ro'yxatdan o'tish</a>
+        <a href="/aloqa" class="btn btn-ghost">Hamkorlik bo'yicha murojaat</a>
+      </div>
+    </div>
+  </div>
+</section>

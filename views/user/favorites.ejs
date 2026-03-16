@@ -1,0 +1,29 @@
+<div class="row g-4">
+  <div class="col-lg-6">
+    <div class="panel-card">
+      <h3 class="mb-3">Sevimli punktlar</h3>
+      <div class="list-stack">
+        <% favoritesList.forEach((point) => { %>
+          <div class="list-item"><div><strong><%= point.name %></strong><p><%= point.address %></p></div><span class="badge-soft-success">Saqlangan</span></div>
+        <% }) %>
+      </div>
+      <% if (!favoritesList.length) { %><div class="empty-state">Hali punkt saqlanmagan.</div><% } %>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="panel-card">
+      <h3 class="mb-3">Faol punktlar</h3>
+      <div class="list-stack">
+        <% points.forEach((point) => { %>
+          <div class="list-item">
+            <div><strong><%= point.name %></strong><p><%= point.address %></p></div>
+            <form method="post" action="/user/favorites/<%= point._id %>">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+              <button class="btn btn-soft" type="submit">Saqlash</button>
+            </form>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</div>

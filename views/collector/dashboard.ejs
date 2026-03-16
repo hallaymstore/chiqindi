@@ -1,0 +1,24 @@
+<div class="dashboard-stat-grid">
+  <div class="dashboard-stat-card"><span>Biriktirilgan</span><h3><%= metrics.totals.assigned %></h3><p class="mb-0">Tasdiqlangan navbatlar</p></div>
+  <div class="dashboard-stat-card"><span>Yo‘lda</span><h3><%= metrics.totals.inTransit %></h3><p class="mb-0">Faol marshrutlar</p></div>
+  <div class="dashboard-stat-card"><span>Bugungi navbat</span><h3><%= metrics.totals.todayQueue %></h3><p class="mb-0">Bugun bajariladigan pickup</p></div>
+  <div class="dashboard-stat-card"><span>Jami yig‘ilgan</span><h3><%= helpers.formatKg(metrics.totals.totalCollectedKg) %></h3><p class="mb-0">Tizimga kiritilgan haqiqiy vazn</p></div>
+</div>
+
+<div class="panel-card">
+  <div class="d-flex justify-content-between align-items-center mb-3"><h3 class="mb-0">Faol topshiriqlar</h3><a href="/collector/queue" class="btn btn-soft">Navbat</a></div>
+  <div class="list-stack">
+    <% activeQueue.forEach((item) => { %>
+      <div class="list-item">
+        <div>
+          <strong><%= item.user?.name %> · <%= item.category?.name %></strong>
+          <p><%= item.address %></p>
+        </div>
+        <div class="text-end">
+          <span class="<%= helpers.statusBadgeClass(item.status) %>"><%= helpers.formatStatus(item.status) %></span>
+          <p class="mb-0 mt-2"><%= helpers.formatDate(item.preferredDate || item.createdAt) %></p>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>

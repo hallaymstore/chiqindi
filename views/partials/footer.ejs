@@ -1,0 +1,47 @@
+<footer class="site-footer">
+  <div class="container py-5">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="footer-brand">
+          <div class="brand-mark mb-3">
+            <span class="brand-orb"></span>
+            <span>
+              <strong>ChiqindiBor</strong>
+              <small>plastikni daromadga aylantiring</small>
+            </span>
+          </div>
+          <p><%= siteSettings.description %></p>
+          <div class="footer-socials">
+            <a href="<%= siteSettings.socialLinks?.telegram || '#' %>"><i class="ri-telegram-line"></i></a>
+            <a href="<%= siteSettings.socialLinks?.instagram || '#' %>"><i class="ri-instagram-line"></i></a>
+            <a href="<%= siteSettings.socialLinks?.linkedin || '#' %>"><i class="ri-linkedin-line"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6>Platforma</h6>
+        <a href="/qanday-ishlaydi">Qanday ishlaydi</a>
+        <a href="/narxlar">Narxlar</a>
+        <a href="/punktlar">Punktlar</a>
+        <a href="/hamkor-zavodlar">Hamkorlar</a>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6>Kontent</h6>
+        <a href="/blog">Blog</a>
+        <a href="/faq">FAQ</a>
+        <a href="/haqida">Loyiha haqida</a>
+        <a href="/aloqa">Aloqa</a>
+      </div>
+      <div class="col-lg-4">
+        <h6>Aloqa</h6>
+        <p><i class="ri-mail-line"></i> <%= siteSettings.supportEmail %></p>
+        <p><i class="ri-phone-line"></i> <%= siteSettings.supportPhone %></p>
+        <p><i class="ri-map-pin-line"></i> <%= siteSettings.address %></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <%= new Date().getFullYear() %> ChiqindiBor. Barcha huquqlar himoyalangan.</span>
+      <span>Ekologiya, qayta ishlash va daromad uchun raqamli ekotizim.</span>
+    </div>
+  </div>
+</footer>

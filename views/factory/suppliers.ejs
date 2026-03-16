@@ -1,0 +1,29 @@
+<div class="panel-card table-responsive">
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th>Ta'minotchi</th>
+        <th>Buyurtmalar</th>
+        <th>Jami vazn</th>
+        <th>Jami summa</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% suppliersList.forEach((item) => { %>
+        <tr>
+          <td>
+            <strong><%= item.supplier?.name || "Noma'lum" %></strong>
+            <div class="text-muted"><%= item.supplier?.email || '' %></div>
+          </td>
+          <td><%= item.totalOrders %></td>
+          <td><%= helpers.formatKg(item.totalWeight) %></td>
+          <td><%= helpers.formatCurrency(item.totalAmount) %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <% if (!suppliersList.length) { %>
+    <div class="empty-state">Ta'minotchi ma'lumotlari yo'q.</div>
+  <% } %>
+</div>

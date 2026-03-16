@@ -1,0 +1,7 @@
+<div class="dashboard-stat-grid">
+  <div class="dashboard-stat-card"><span>Jami foydalanuvchilar</span><h3><%= analytics.totals.totalUsers %></h3></div>
+  <div class="dashboard-stat-card"><span>Jami so‘rovlar</span><h3><%= analytics.totals.totalRequests %></h3></div>
+  <div class="dashboard-stat-card"><span>Yig‘ilgan kg</span><h3><%= helpers.formatKg(analytics.totals.totalKgCollected) %></h3></div>
+  <div class="dashboard-stat-card"><span>Payout</span><h3><%= helpers.formatCurrency(analytics.totals.totalPayouts) %></h3></div>
+</div>
+<div class="panel-card panel-dark"><h3>Tizim bo‘yicha strategik ko‘rsatkichlar</h3><p class="mb-0">Super admin sifatida siz butun ekotizim, audit va pricing mantiqini nazorat qilasiz. Quyidagi bo‘limlar orqali adminlarni, komissiya sozlamalarini va permissionlar oqimini boshqarishingiz mumkin.</p></div>

@@ -1,0 +1,86 @@
+<%
+  const priceChartConfig = {
+    type: 'bar',
+    data: {
+      labels: categories.map((item) => item.name),
+      datasets: [{
+        label: '1 kg narx',
+        data: categories.map((item) => item.pricePerKg),
+        backgroundColor: 'rgba(32, 211, 155, 0.75)',
+        borderRadius: 14
+      }]
+    },
+    options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+  };
+%>
+<div class="dashboard-stat-grid">
+  <div class="dashboard-stat-card"><span>Jami topshirilgan</span><h3><%= helpers.formatKg(metrics.totals.totalSubmittedWaste) %></h3><p class="mb-0">Listinglar bo‘yicha taxminiy umumiy hajm</p></div>
+  <div class="dashboard-stat-card"><span>Jami daromad</span><h3><%= helpers.formatCurrency(metrics.totals.totalEarnings) %></h3><p class="mb-0">Tasdiqlangan payout va tushumlar</p></div>
+  <div class="dashboard-stat-card"><span>Kutilayotgan pickup</span><h3><%= metrics.totals.pendingPickups %></h3><p class="mb-0">Jarayondagi so‘rovlar</p></div>
+  <div class="dashboard-stat-card"><span>Yakunlangan pickup</span><h3><%= metrics.totals.completedPickups %></h3><p class="mb-0">Muvaffaqiyatli yakunlangan topshiriqlar</p></div>
+</div>
+
+<div class="dual-grid">
+  <div class="panel-card">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3 class="mb-0">Joriy narxlar</h3>
+      <a href="/user/listings/new" class="btn btn-gradient">Yangi topshiruv</a>
+    </div>
+    <div class="chart-wrap"><canvas data-chart-config='<%- JSON.stringify(priceChartConfig) %>'></canvas></div>
+  </div>
+  <div class="panel-card panel-dark">
+    <h3>So‘nggi faoliyat</h3>
+    <div class="list-stack mt-3">
+      <% recentActivity.forEach((item) => { %>
+        <div class="list-item">
+          <div>
+            <strong><%= item.title || item.address || 'Pickup yangilanishi' %></strong>
+            <p><%= item.notes || item.description || 'Jarayon yozuvi' %></p>
+          </div>
+          <span class="badge-soft-primary"><%= helpers.formatDateTime(item.createdAt) %></span>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-7">
+    <div class="panel-card">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="mb-0">So‘nggi pickup so‘rovlari</h3>
+        <a href="/user/pickups" class="btn btn-soft">Barchasi</a>
+      </div>
+      <div class="list-stack">
+        <% metrics.pickups.slice(0, 5).forEach((item) => { %>
+          <div class="list-item">
+            <div>
+              <strong><%= item.category?.name || 'Kategoriya' %></strong>
+              <p><%= item.address %></p>
+            </div>
+            <div class="text-end">
+              <span class="<%= helpers.statusBadgeClass(item.status) %>"><%= helpers.formatStatus(item.status) %></span>
+              <p class="mb-0 mt-2"><%= helpers.formatDate(item.preferredDate || item.createdAt) %></p>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <div class="panel-card">
+      <h3 class="mb-3">Bildirishnomalar</h3>
+      <div class="list-stack">
+        <% notificationsList.forEach((item) => { %>
+          <div class="list-item">
+            <div>
+              <strong><%= item.title %></strong>
+              <p><%= item.message %></p>
+            </div>
+            <span class="<%= item.isRead ? 'badge-soft-muted' : 'badge-soft-success' %>"><%= item.isRead ? 'O‘qilgan' : 'Yangi' %></span>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</div>

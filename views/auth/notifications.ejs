@@ -1,0 +1,25 @@
+<div class="panel-card">
+  <div class="list-stack">
+    <% notificationsList.forEach((item) => { %>
+      <div class="list-item">
+        <div>
+          <strong><%= item.title %></strong>
+          <p><%= item.message %></p>
+          <span class="badge-soft-primary"><%= helpers.formatDateTime(item.createdAt) %></span>
+        </div>
+        <div class="text-end">
+          <span class="<%= item.isRead ? 'badge-soft-muted' : 'badge-soft-success' %>"><%= item.isRead ? 'O‘qilgan' : 'Yangi' %></span>
+          <% if (!item.isRead) { %>
+            <form method="post" action="/bildirishnomalar/<%= item._id %>/read" class="mt-2">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+              <button class="btn btn-soft" type="submit">O‘qildi</button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+  <% if (!notificationsList.length) { %>
+    <div class="empty-state">Hozircha bildirishnoma yo‘q.</div>
+  <% } %>
+</div>

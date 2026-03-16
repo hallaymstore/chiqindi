@@ -1,0 +1,16 @@
+<div class="list-stack">
+  <% items.forEach((item) => { %>
+    <div class="panel-card">
+      <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3"><div><h3 class="mb-1"><%= item.user?.name || '—' %> · <%= item.category?.name || '—' %></h3><p class="mb-0"><%= item.address %></p></div><span class="<%= helpers.statusBadgeClass(item.status) %>"><%= helpers.formatStatus(item.status) %></span></div>
+      <form method="post" action="/admin/pickups/<%= item._id %>/status" class="row g-3">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <div class="col-md-3"><label>Status</label><select class="form-select" name="status"><option value="pending">Kutilmoqda</option><option value="approved">Tasdiqlash</option><option value="assigned">Biriktirish</option><option value="on_the_way">Yo‘lda</option><option value="delivered_to_point">Punktga yetkazildi</option><option value="delivered_to_factory">Zavodga yetkazildi</option><option value="completed">Yakunlandi</option><option value="rejected">Rad etildi</option></select></div>
+        <div class="col-md-3"><label>Haydovchi</label><select class="form-select" name="assignedCollector"><option value="">Tanlanmagan</option><% collectors.forEach((collector) => { %><option value="<%= collector._id %>"><%= collector.name %></option><% }) %></select></div>
+        <div class="col-md-3"><label>Punkt</label><select class="form-select" name="collectionPoint"><option value="">Tanlanmagan</option><% points.forEach((point) => { %><option value="<%= point._id %>"><%= point.name %></option><% }) %></select></div>
+        <div class="col-md-3"><label>Zavod</label><select class="form-select" name="factory"><option value="">Tanlanmagan</option><% factories.forEach((factory) => { %><option value="<%= factory._id %>"><%= factory.name %></option><% }) %></select></div>
+        <div class="col-12"><label>Izoh</label><input class="form-control" type="text" name="note" /></div>
+        <div class="col-12"><button class="btn btn-gradient" type="submit">Yangilash</button></div>
+      </form>
+    </div>
+  <% }) %>
+</div>

@@ -1,0 +1,40 @@
+<div class="row g-4">
+  <div class="col-lg-7">
+    <div class="panel-card table-responsive">
+      <table class="table align-middle">
+        <thead><tr><th>Partiya</th><th>Vazn</th><th>Status</th><th>Transfer</th></tr></thead>
+        <tbody>
+          <% transferable.forEach((item) => { %>
+            <tr>
+              <td><strong><%= item.user?.name %></strong><div class="text-muted"><%= item.category?.name %></div></td>
+              <td><%= helpers.formatKg(item.actualWeight || item.estimatedWeight) %></td>
+              <td><span class="<%= helpers.statusBadgeClass(item.status) %>"><%= helpers.formatStatus(item.status) %></span></td>
+              <td>
+                <form method="post" action="/point-manager/transfers" class="d-flex gap-2 align-items-center">
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                  <input type="hidden" name="pickupId" value="<%= item._id %>" />
+                  <select class="form-select" name="factoryId" required>
+                    <option value="">Zavod</option>
+                    <% factories.forEach((factory) => { %><option value="<%= factory._id %>"><%= factory.name %></option><% }) %>
+                  </select>
+                  <button class="btn btn-gradient" type="submit">Yuborish</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <% if (!transferable.length) { %><div class="empty-state">Transferga tayyor partiya yo‘q.</div><% } %>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <div class="panel-card panel-dark">
+      <h3>Hamkor zavodlar</h3>
+      <div class="list-stack mt-3">
+        <% factories.forEach((factory) => { %>
+          <div class="list-item"><div><strong><%= factory.name %></strong><p><%= factory.region || 'Toshkent' %></p></div><span class="badge-soft-cyan"><%= helpers.formatKg(factory.dailyCapacityKg || 0) %></span></div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</div>

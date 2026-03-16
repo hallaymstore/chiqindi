@@ -1,0 +1,34 @@
+<div class="panel-card mb-3 d-flex justify-content-between align-items-center">
+  <h3 class="mb-0">To'lov yozuvlari</h3>
+  <a href="/admin/payments/export.csv" class="btn btn-gradient">Hisobotni yuklab olish</a>
+</div>
+
+<div class="panel-card table-responsive">
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th>Foydalanuvchi</th>
+        <th>Baholangan</th>
+        <th>Yakuniy</th>
+        <th>Status</th>
+        <th>Usul</th>
+        <th>Sana</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% items.forEach((item) => { %>
+        <tr>
+          <td>
+            <strong><%= item.user?.name || '-' %></strong>
+            <div class="text-muted"><%= item.transactionId || '-' %></div>
+          </td>
+          <td><%= helpers.formatCurrency(item.estimatedAmount) %></td>
+          <td><%= helpers.formatCurrency(item.finalAmount) %></td>
+          <td><span class="<%= helpers.statusBadgeClass(item.paymentStatus) %>"><%= helpers.formatStatus(item.paymentStatus) %></span></td>
+          <td><%= item.paymentMethod %></td>
+          <td><%= helpers.formatDate(item.createdAt) %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,31 @@
+<div class="panel-card table-responsive">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="mb-0">Mening e'lonlarim</h3>
+    <a href="/user/listings/new" class="btn btn-gradient">Yangi e'lon</a>
+  </div>
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th>Sarlavha</th>
+        <th>Toifa</th>
+        <th>Vazn</th>
+        <th>Stavka</th>
+        <th>Holat</th>
+        <th>Sana</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% items.forEach((item) => { %>
+        <tr>
+          <td><strong><%= item.title %></strong><div class="text-muted"><%= item.address %></div></td>
+          <td><%= item.category?.name || '—' %></td>
+          <td><%= helpers.formatKg(item.estimatedWeight) %></td>
+          <td><%= helpers.formatCurrency(item.offeredRate) %></td>
+          <td><span class="<%= helpers.statusBadgeClass(item.status) %>"><%= helpers.formatStatus(item.status) %></span></td>
+          <td><%= helpers.formatDate(item.createdAt) %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <% if (!items.length) { %><div class="empty-state">Hali e'lon yaratilmagan.</div><% } %>
+</div>

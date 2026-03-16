@@ -1,0 +1,8 @@
+<% if (flash) { %>
+  <div class="flash-wrap container">
+    <div class="flash-card flash-<%= flash.type %>" data-alert>
+      <span><%= flash.message %></span>
+      <button type="button" class="flash-close" data-dismiss-alert><i class="ri-close-line"></i></button>
+    </div>
+  </div>
+<% } %>

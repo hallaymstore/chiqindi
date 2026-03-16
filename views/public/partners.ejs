@@ -1,0 +1,20 @@
+<%- include('../partials/public-page-hero', { title: 'Hamkor zavodlar', description: 'Plastik chiqindini qabul qiluvchi va qayta ishlovchi zavodlar bilan tanishing.' }) %>
+
+<section class="section-space section-light">
+  <div class="container">
+    <div class="partner-grid">
+      <% factories.forEach((factory) => { %>
+        <div class="partner-card">
+          <div class="icon-bubble"><i class="ri-building-line"></i></div>
+          <h3><%= factory.name %></h3>
+          <p><%= factory.description || 'Qayta ishlash bo‘yicha faol hamkor zavod.' %></p>
+          <div class="info-strip mb-3">
+            <span><i class="ri-map-pin-line"></i> <%= factory.region || 'Toshkent' %></span>
+            <span><i class="ri-recycle-line"></i> <%= factory.dailyCapacityKg || 0 %> kg/kun</span>
+          </div>
+          <p class="mb-0"><i class="ri-mail-line"></i> <%= factory.email || '—' %></p>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>

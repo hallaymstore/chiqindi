@@ -1,0 +1,29 @@
+<%- include('../partials/public-page-hero', { title: 'Loyiha haqida', description: 'ChiqindiBor plastik chiqindilarni boshqarish, daromadga aylantirish va qayta ishlash zanjirini raqamlashtirish uchun yaratilgan.' }) %>
+
+<section class="section-space section-light">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-6">
+        <div class="feature-card">
+          <span class="eyebrow"><i class="ri-earth-line"></i> Missiya</span>
+          <h2 class="mt-3">Ekologiyani iqtisodiy rag'bat bilan mustahkamlash</h2>
+          <p>Platforma aholiga chiqindini shunchaki tashlab yuborish emas, balki uni qiymatga ega resurs sifatida ko'rishga yordam beradi. Shu orqali qayta ishlash tizimi uchun barqaror xomashyo oqimi yaratiladi.</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="feature-grid">
+          <div class="feature-card"><div class="icon-bubble"><i class="ri-user-heart-line"></i></div><h3>Aholi uchun</h3><p>Daromad, qulay olib ketish va yaqin punktlar xaritasi.</p></div>
+          <div class="feature-card"><div class="icon-bubble"><i class="ri-community-line"></i></div><h3>Punktlar uchun</h3><p>Sig'im, zaxira va transfer nazorati.</p></div>
+          <div class="feature-card"><div class="icon-bubble"><i class="ri-building-line"></i></div><h3>Zavodlar uchun</h3><p>Xarid tahlillari va ta'minot zanjiri shaffofligi.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-grid mt-5">
+      <div class="metric-card"><span>Foydalanuvchilar</span><h3><%= analytics.totalUsers %>+</h3><p>Faol tizim foydalanuvchilari</p></div>
+      <div class="metric-card"><span>Olib ketish so'rovlari</span><h3><%= analytics.totalRequests %>+</h3><p>Yaratilgan umumiy so'rovlar</p></div>
+      <div class="metric-card"><span>Yakunlanganlar</span><h3><%= analytics.totalCompletedPickups %>+</h3><p>Muvaffaqiyatli bajarilgan topshiriqlar</p></div>
+      <div class="metric-card"><span>To'lovlar</span><h3><%= helpers.formatCurrency(analytics.totalPayouts) %></h3><p>Platforma orqali tasdiqlangan to'lovlar</p></div>
+    </div>
+  </div>
+</section>

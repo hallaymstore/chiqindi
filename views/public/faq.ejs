@@ -1,0 +1,23 @@
+<%- include('../partials/public-page-hero', { title: 'Ko‘p beriladigan savollar', description: 'Pickup, to‘lov, punktlar va qayta ishlash bo‘yicha eng muhim savollar.' }) %>
+
+<section class="section-space section-light">
+  <div class="container">
+    <div class="accordion" id="faqAccordion">
+      <% faqs.forEach((item, index) => { %>
+        <div class="faq-card mb-3">
+          <h2 class="accordion-header" id="heading<%= index %>">
+            <button class="accordion-button <%= index !== 0 ? 'collapsed' : '' %>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= index %>">
+              <%= item.question %>
+            </button>
+          </h2>
+          <div id="collapse<%= index %>" class="accordion-collapse collapse <%= index === 0 ? 'show' : '' %>" data-bs-parent="#faqAccordion">
+            <div class="accordion-body"><%= item.answer %></div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    <% if (!faqs.length) { %>
+      <div class="empty-state">FAQ bo‘limi yaqin orada to‘ldiriladi.</div>
+    <% } %>
+  </div>
+</section>

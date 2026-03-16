@@ -1,0 +1,26 @@
+<%
+  const wasteChartConfig = {
+    type: 'doughnut',
+    data: { labels: analytics.charts.wasteByCategory.labels, datasets: [{ data: analytics.charts.wasteByCategory.data, backgroundColor: ['#20d39b', '#13b9d2', '#8fe58f', '#4c8eff', '#ffd166', '#ff8fa3'] }] },
+    options: { plugins: { legend: { position: 'bottom' } } }
+  };
+  const growthChartConfig = {
+    type: 'line',
+    data: { labels: analytics.charts.monthlyGrowth.labels, datasets: [{ label: 'So‘rovlar', data: analytics.charts.monthlyGrowth.data, borderColor: '#20d39b', backgroundColor: 'rgba(32, 211, 155, 0.15)', fill: true, tension: 0.35 }] },
+    options: { plugins: { legend: { display: false } } }
+  };
+%>
+<div class="dashboard-stat-grid">
+  <div class="dashboard-stat-card"><span>Jami foydalanuvchilar</span><h3><%= analytics.totals.totalUsers %></h3></div>
+  <div class="dashboard-stat-card"><span>Haydovchilar</span><h3><%= analytics.totals.totalCollectors %></h3></div>
+  <div class="dashboard-stat-card"><span>So‘rovlar</span><h3><%= analytics.totals.totalRequests %></h3></div>
+  <div class="dashboard-stat-card"><span>Payout</span><h3><%= helpers.formatCurrency(analytics.totals.totalPayouts) %></h3></div>
+</div>
+<div class="dual-grid">
+  <div class="panel-card"><h3 class="mb-3">Oylik o‘sish</h3><div class="chart-wrap"><canvas data-chart-config='<%- JSON.stringify(growthChartConfig) %>'></canvas></div></div>
+  <div class="panel-card"><h3 class="mb-3">Kategoriya bo‘yicha kg</h3><div class="chart-wrap"><canvas data-chart-config='<%- JSON.stringify(wasteChartConfig) %>'></canvas></div></div>
+</div>
+<div class="row g-4">
+  <div class="col-lg-7"><div class="panel-card"><h3 class="mb-3">So‘nggi pickup so‘rovlari</h3><div class="list-stack"><% recentPickups.forEach((item) => { %><div class="list-item"><div><strong><%= item.user?.name || '—' %> · <%= item.category?.name || '—' %></strong><p><%= item.address %></p></div><span class="<%= helpers.statusBadgeClass(item.status) %>"><%= helpers.formatStatus(item.status) %></span></div><% }) %></div></div></div>
+  <div class="col-lg-5"><div class="panel-card"><h3 class="mb-3">Yangi foydalanuvchilar</h3><div class="list-stack"><% recentUsers.forEach((item) => { %><div class="list-item"><div><strong><%= item.name %></strong><p><%= item.email %></p></div><span class="badge-soft-primary"><%= helpers.formatRole(item.role) %></span></div><% }) %></div></div></div>
+</div>

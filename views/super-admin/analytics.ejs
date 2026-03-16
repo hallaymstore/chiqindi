@@ -1,0 +1,61 @@
+<%
+  const growthChartConfig = {
+    type: 'line',
+    data: {
+      labels: analytics.charts.monthlyGrowth.labels,
+      datasets: [
+        {
+          label: "So'rovlar",
+          data: analytics.charts.monthlyGrowth.data,
+          borderColor: '#20d39b',
+          backgroundColor: 'rgba(32, 211, 155, 0.15)',
+          fill: true,
+          tension: 0.35
+        }
+      ]
+    },
+    options: {
+      plugins: { legend: { display: false } }
+    }
+  };
+
+  const regionsChartConfig = {
+    type: 'bar',
+    data: {
+      labels: analytics.charts.topRegions.labels,
+      datasets: [
+        {
+          data: analytics.charts.topRegions.data,
+          backgroundColor: '#13b9d2',
+          borderRadius: 14
+        }
+      ]
+    },
+    options: {
+      plugins: { legend: { display: false } }
+    }
+  };
+%>
+
+<div class="panel-card mb-3 d-flex justify-content-between align-items-center">
+  <div>
+    <h3 class="mb-1">To'liq analitika</h3>
+    <p class="mb-0">Eksport va monitoring uchun super admin ko'rinishi.</p>
+  </div>
+  <a href="/super-admin/analytics/export.csv" class="btn btn-gradient">Hisobotni yuklab olish</a>
+</div>
+
+<div class="dual-grid">
+  <div class="panel-card">
+    <h3 class="mb-3">Oylik o'sish</h3>
+    <div class="chart-wrap">
+      <canvas data-chart-config='<%- JSON.stringify(growthChartConfig) %>'></canvas>
+    </div>
+  </div>
+  <div class="panel-card">
+    <h3 class="mb-3">Top hududlar</h3>
+    <div class="chart-wrap">
+      <canvas data-chart-config='<%- JSON.stringify(regionsChartConfig) %>'></canvas>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<%- include('../partials/public-page-hero', { title: 'Aloqa', description: 'Hamkorlik, savollar yoki murojaat uchun bizga yozing.' }) %>
+
+<section class="section-space section-light">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <div class="contact-grid">
+          <div class="contact-card"><div class="icon-bubble"><i class="ri-phone-line"></i></div><h3>Telefon</h3><p><%= siteSettings.supportPhone %></p></div>
+          <div class="contact-card"><div class="icon-bubble"><i class="ri-mail-line"></i></div><h3>Email</h3><p><%= siteSettings.supportEmail %></p></div>
+          <div class="contact-card"><div class="icon-bubble"><i class="ri-map-pin-line"></i></div><h3>Manzil</h3><p><%= siteSettings.address %></p></div>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="form-card">
+          <form method="post" action="/aloqa" class="row g-3">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <div class="col-md-6">
+              <label>Ism</label>
+              <input class="form-control" type="text" name="name" required />
+            </div>
+            <div class="col-md-6">
+              <label>Email</label>
+              <input class="form-control" type="email" name="email" required />
+            </div>
+            <div class="col-md-6">
+              <label>Telefon</label>
+              <input class="form-control" type="text" name="phone" />
+            </div>
+            <div class="col-md-6">
+              <label>Kompaniya</label>
+              <input class="form-control" type="text" name="company" />
+            </div>
+            <div class="col-12">
+              <label>Mavzu</label>
+              <input class="form-control" type="text" name="subject" />
+            </div>
+            <div class="col-12">
+              <label>Xabar</label>
+              <textarea class="form-control" rows="6" name="message" required></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-gradient" type="submit">Xabar yuborish</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

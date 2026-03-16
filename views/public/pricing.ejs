@@ -1,0 +1,28 @@
+<%- include('../partials/public-page-hero', { title: 'Narxlar va chiqindi stavkalari', description: 'Har bir plastik turi bo‘yicha joriy narx va qisqa tavsifni ko‘ring.' }) %>
+
+<section class="section-space section-light">
+  <div class="container">
+    <div class="table-card table-responsive">
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th>Toifa</th>
+            <th>Tavsif</th>
+            <th>Joriy narx</th>
+            <th>Holat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% categories.forEach((category) => { %>
+            <tr>
+              <td><strong><%= category.name %></strong></td>
+              <td><%= category.description %></td>
+              <td><%= helpers.formatCurrency(category.pricePerKg) %> / kg</td>
+              <td><span class="<%= category.isActive ? 'badge-soft-success' : 'badge-soft-muted' %>"><%= category.isActive ? 'Faol' : 'Nofaol' %></span></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

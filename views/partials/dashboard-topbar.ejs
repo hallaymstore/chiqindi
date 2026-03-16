@@ -1,0 +1,25 @@
+<header class="dashboard-topbar">
+  <div>
+    <button type="button" class="sidebar-toggle d-lg-none" data-sidebar-toggle>
+      <i class="ri-menu-line"></i>
+    </button>
+    <div>
+      <span class="eyebrow"><i class="ri-sparkling-2-line"></i> Ishonchli boshqaruv muhiti</span>
+      <h1><%= pageTitle || 'Boshqaruv paneli' %></h1>
+      <p><%= pageDescription || siteSettings.description %></p>
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <a href="/bildirishnomalar" class="topbar-bell">
+      <i class="ri-notification-3-line"></i>
+      <% if (unreadNotificationsCount) { %><span><%= unreadNotificationsCount %></span><% } %>
+    </a>
+    <a href="/profil" class="topbar-profile">
+      <img src="<%= currentUser.avatar %>" alt="avatar" />
+      <div>
+        <strong><%= currentUser.name %></strong>
+        <small><%= helpers.formatRole(currentUser.role) %></small>
+      </div>
+    </a>
+  </div>
+</header>

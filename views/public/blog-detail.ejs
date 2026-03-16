@@ -1,0 +1,29 @@
+<%- include('../partials/public-page-hero', { title: post.title, description: post.excerpt || 'Maqola tafsilotlari' }) %>
+
+<section class="section-space section-light">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <article class="table-card">
+          <img src="<%= post.featuredImage || '/images/blog-placeholder.svg' %>" alt="<%= post.title %>" class="rounded-4 mb-4" />
+          <div class="info-strip mb-4">
+            <span><i class="ri-calendar-line"></i> <%= helpers.formatDate(post.publishedAt || post.createdAt) %></span>
+            <span><i class="ri-eye-line"></i> <%= post.views %> ko‘rish</span>
+            <span><i class="ri-user-line"></i> <%= post.author?.name || 'Admin' %></span>
+          </div>
+          <div class="article-content"><%- post.content %></div>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <div class="list-stack">
+          <% recentPosts.forEach((item) => { %>
+            <a href="/blog/<%= item.slug %>" class="partner-card">
+              <h3><%= item.title %></h3>
+              <p><%= item.excerpt %></p>
+            </a>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

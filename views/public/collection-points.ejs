@@ -1,0 +1,28 @@
+<%- include('../partials/public-page-hero', { title: 'Qabul punktlari xaritasi', description: 'Yaqin punktlarni, ish vaqtini va qabul qilinadigan chiqindi turlarini ko‘ring.' }) %>
+
+<section class="section-space section-light">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <div class="table-card">
+          <div class="leaflet-map" data-points='<%- JSON.stringify(points.map((point) => ({ name: point.name, address: point.address, lat: point.location?.coordinates?.[1] || 41.2995, lng: point.location?.coordinates?.[0] || 69.2401 }))) %>' data-lat="41.2995" data-lng="69.2401" data-zoom="10"></div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="list-stack">
+          <% points.forEach((point) => { %>
+            <div class="partner-card">
+              <h3><%= point.name %></h3>
+              <p><i class="ri-map-pin-line"></i> <%= point.address %></p>
+              <p><i class="ri-time-line"></i> <%= point.hours %></p>
+              <div class="info-strip">
+                <span><i class="ri-archive-line"></i> <%= point.storedKg || 0 %> / <%= point.capacityKg || 0 %> kg</span>
+                <span><i class="ri-phone-line"></i> <%= point.phone || '—' %></span>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

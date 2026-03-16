@@ -1,0 +1,14 @@
+<%
+  const statusChartConfig = { type: 'pie', data: { labels: analytics.charts.requestStatuses.labels, datasets: [{ data: analytics.charts.requestStatuses.data, backgroundColor: ['#20d39b', '#13b9d2', '#5a8dff', '#ffd166', '#ff8fa3', '#8fe58f', '#8e9ba8'] }] } };
+  const regionChartConfig = { type: 'bar', data: { labels: analytics.charts.topRegions.labels, datasets: [{ data: analytics.charts.topRegions.data, backgroundColor: '#13b9d2', borderRadius: 14 }] }, options: { plugins: { legend: { display: false } } } };
+%>
+<div class="dashboard-stat-grid">
+  <div class="dashboard-stat-card"><span>Jami kg</span><h3><%= helpers.formatKg(analytics.totals.totalKgCollected) %></h3></div>
+  <div class="dashboard-stat-card"><span>Faol punktlar</span><h3><%= analytics.totals.activePoints %></h3></div>
+  <div class="dashboard-stat-card"><span>Faol zavodlar</span><h3><%= analytics.totals.activeFactories %></h3></div>
+  <div class="dashboard-stat-card"><span>Yakunlangan pickup</span><h3><%= analytics.totals.totalCompletedPickups %></h3></div>
+</div>
+<div class="dual-grid">
+  <div class="panel-card"><h3 class="mb-3">Status taqsimoti</h3><div class="chart-wrap"><canvas data-chart-config='<%- JSON.stringify(statusChartConfig) %>'></canvas></div></div>
+  <div class="panel-card"><h3 class="mb-3">Top hududlar</h3><div class="chart-wrap"><canvas data-chart-config='<%- JSON.stringify(regionChartConfig) %>'></canvas></div></div>
+</div>

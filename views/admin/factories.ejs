@@ -1,0 +1,105 @@
+<div class="row g-4">
+  <div class="col-lg-5">
+    <div class="panel-card">
+      <h3 class="mb-3">Yangi zavod</h3>
+      <form method="post" action="/admin/factories" class="row g-3">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <div class="col-12">
+          <label>Nomi</label>
+          <input class="form-control" type="text" name="name" required />
+        </div>
+        <div class="col-12">
+          <label>Manzil</label>
+          <input class="form-control" type="text" name="address" required />
+        </div>
+        <div class="col-md-6">
+          <label>Hudud</label>
+          <input class="form-control" type="text" name="region" />
+        </div>
+        <div class="col-md-6">
+          <label>Menejer</label>
+          <select class="form-select" name="manager">
+            <option value="">Tanlang</option>
+            <% managers.forEach((manager) => { %>
+              <option value="<%= manager._id %>"><%= manager.name %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label>Kunlik sig'im</label>
+          <input class="form-control" type="number" name="dailyCapacityKg" />
+        </div>
+        <div class="col-md-6">
+          <label>Qayta ishlangan hajm</label>
+          <input class="form-control" type="number" name="processedKg" />
+        </div>
+        <div class="col-md-6">
+          <label>Telefon</label>
+          <input class="form-control" type="text" name="phone" />
+        </div>
+        <div class="col-md-6">
+          <label>Email</label>
+          <input class="form-control" type="email" name="email" />
+        </div>
+        <div class="col-md-6">
+          <label>Website</label>
+          <input class="form-control" type="text" name="website" />
+        </div>
+        <div class="col-md-6">
+          <label>Holat</label>
+          <select class="form-select" name="status">
+            <option value="active">Faol</option>
+            <option value="inactive">Nofaol</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label>X koordinata</label>
+          <input class="form-control" type="number" step="0.000001" name="longitude" value="69.2401" />
+        </div>
+        <div class="col-md-6">
+          <label>Y koordinata</label>
+          <input class="form-control" type="number" step="0.000001" name="latitude" value="41.2995" />
+        </div>
+        <div class="col-12">
+          <label>Qabul toifalari</label>
+          <select class="form-select" multiple name="acceptedCategories">
+            <% categoriesList.forEach((item) => { %>
+              <option value="<%= item._id %>"><%= item.name %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-gradient" type="submit">Saqlash</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="col-lg-7">
+    <div class="panel-card table-responsive">
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th>Zavod</th>
+            <th>Menejer</th>
+            <th>Sig'im</th>
+            <th>Holat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% items.forEach((item) => { %>
+            <tr>
+              <td>
+                <strong><%= item.name %></strong>
+                <div class="text-muted"><%= item.address %></div>
+              </td>
+              <td><%= item.manager?.name || '-' %></td>
+              <td><%= helpers.formatKg(item.processedKg) %> / <%= helpers.formatKg(item.dailyCapacityKg) %></td>
+              <td><span class="<%= item.status === 'active' ? 'badge-soft-success' : 'badge-soft-muted' %>"><%= item.status %></span></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="row g-4">
+  <div class="col-lg-4">
+    <div class="panel-card panel-dark">
+      <h3><%= metrics.point?.name || 'Punkt' %></h3>
+      <p><%= metrics.point?.address || 'Manzil mavjud emas' %></p>
+      <div class="kpi-row mt-3">
+        <div class="kpi-chip"><strong><%= helpers.formatKg(metrics.point?.storedKg || 0) %></strong><span>Qoldiq</span></div>
+        <div class="kpi-chip"><strong><%= helpers.formatKg(metrics.point?.capacityKg || 0) %></strong><span>Sig‘im</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <div class="panel-card table-responsive">
+      <table class="table align-middle">
+        <thead><tr><th>Foydalanuvchi</th><th>Toifa</th><th>Vazn</th><th>Status</th><th>Zavod</th></tr></thead>
+        <tbody>
+          <% items.forEach((item) => { %>
+            <tr>
+              <td><%= item.user?.name %></td>
+              <td><%= item.category?.name %></td>
+              <td><%= helpers.formatKg(item.actualWeight || item.estimatedWeight) %></td>
+              <td><span class="<%= helpers.statusBadgeClass(item.status) %>"><%= helpers.formatStatus(item.status) %></span></td>
+              <td><%= item.factory?.name || '—' %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

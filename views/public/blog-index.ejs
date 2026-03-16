@@ -1,0 +1,32 @@
+<%- include('../partials/public-page-hero', { title: 'Blog va yangiliklar', description: 'Ekologiya, qayta ishlash va plastik iqtisodiyoti bo‘yicha so‘nggi maqolalar.' }) %>
+
+<section class="section-space section-light">
+  <div class="container">
+    <div class="form-card mb-4">
+      <form class="row g-3 align-items-end" method="get" action="/blog">
+        <div class="col-md-9">
+          <label for="q">Qidiruv</label>
+          <input id="q" class="form-control" type="text" name="q" value="<%= search || '' %>" placeholder="Maqola nomi yoki kalit so‘z" />
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-gradient w-100" type="submit">Qidirish</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="blog-grid">
+      <% posts.forEach((post) => { %>
+        <a class="blog-card" href="/blog/<%= post.slug %>">
+          <img src="<%= post.featuredImage || '/images/blog-placeholder.svg' %>" alt="<%= post.title %>" class="rounded-4 mb-3" />
+          <span class="badge-soft-primary mb-2"><%= helpers.formatDate(post.publishedAt || post.createdAt) %></span>
+          <h3><%= post.title %></h3>
+          <p><%= post.excerpt %></p>
+        </a>
+      <% }) %>
+    </div>
+
+    <% if (!posts.length) { %>
+      <div class="empty-state mt-4">Hozircha mos maqola topilmadi.</div>
+    <% } %>
+  </div>
+</section>

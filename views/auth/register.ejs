@@ -1,0 +1,59 @@
+<section class="section-space auth-shell">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-5">
+        <div class="auth-aside">
+          <span class="eyebrow"><i class="ri-user-add-line"></i> Ro‘yxatdan o‘tish</span>
+          <h2 class="mt-3">Plastik chiqindi orqali yangi daromad oqimini ishga tushiring</h2>
+          <div class="feature-grid mt-4">
+            <div class="mini-kpi"><strong>Uy pickup</strong><span>Manzil bo‘yicha olib ketish xizmati</span></div>
+            <div class="mini-kpi"><strong>Narxlar</strong><span>Har bir kategoriya uchun joriy stavkalar</span></div>
+            <div class="mini-kpi"><strong>Boshqaruv oynasi</strong><span>Tarix, to‘lov va statuslar bir joyda</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="auth-card">
+          <h2>Yangi hisob</h2>
+          <p class="text-muted">Sotuvchi roli bilan tizimga qo‘shiling.</p>
+          <form method="post" action="/register" class="row g-3">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <div class="col-md-6">
+              <label>To‘liq ism</label>
+              <input class="form-control" type="text" name="name" required />
+            </div>
+            <div class="col-md-6">
+              <label>Telefon</label>
+              <input class="form-control" type="text" name="phone" />
+            </div>
+            <div class="col-md-6">
+              <label>Email</label>
+              <input class="form-control" type="email" name="email" required />
+            </div>
+            <div class="col-md-6">
+              <label>Parol</label>
+              <input class="form-control" type="password" name="password" required />
+            </div>
+            <div class="col-md-6">
+              <label>Hudud</label>
+              <input class="form-control" type="text" name="region" placeholder="Toshkent" />
+            </div>
+            <div class="col-md-6">
+              <label>Kompaniya / tashkilot</label>
+              <input class="form-control" type="text" name="companyName" />
+            </div>
+            <div class="col-12">
+              <label>Manzil</label>
+              <input class="form-control" type="text" name="address" />
+            </div>
+            <div class="col-12 d-flex justify-content-between align-items-center">
+              <span>Davom etish orqali siz platforma shartlariga rozilik bildirasiz.</span>
+              <button class="btn btn-gradient" type="submit">Hisob yaratish</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

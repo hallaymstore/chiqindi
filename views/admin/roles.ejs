@@ -1,0 +1,20 @@
+<div class="panel-card table-responsive">
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th>Rol</th>
+        <th>Tavsif</th>
+        <th>Ruxsatlar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% items.forEach((item) => { %>
+        <tr>
+          <td><strong><%= item.label %></strong></td>
+          <td><%= item.description %></td>
+          <td><%= item.permissions.join(', ') || '-' %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

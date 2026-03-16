@@ -1,0 +1,17 @@
+<div class="panel-card table-responsive">
+  <table class="table align-middle">
+    <thead><tr><th>Foydalanuvchi</th><th>Toifa</th><th>Vazn</th><th>Status</th><th>Sana</th></tr></thead>
+    <tbody>
+      <% items.forEach((item) => { %>
+        <tr>
+          <td><%= item.user?.name %></td>
+          <td><%= item.category?.name %></td>
+          <td><%= helpers.formatKg(item.actualWeight || item.estimatedWeight) %></td>
+          <td><span class="<%= helpers.statusBadgeClass(item.status) %>"><%= helpers.formatStatus(item.status) %></span></td>
+          <td><%= helpers.formatDate(item.updatedAt) %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <% if (!items.length) { %><div class="empty-state">Tarix bo‘sh.</div><% } %>
+</div>

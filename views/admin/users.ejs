@@ -1,0 +1,8 @@
+<div class="panel-card mb-4">
+  <form method="get" action="/admin/users" class="row g-3 align-items-end">
+    <div class="col-md-7"><label>Qidiruv</label><input class="form-control" type="text" name="q" value="<%= q %>" placeholder="Ism, email, telefon" /></div>
+    <div class="col-md-3"><label>Rol</label><select class="form-select" name="role"><option value="">Barchasi</option><% roles.forEach((item) => { %><option value="<%= item %>" <%= role === item ? 'selected' : '' %>><%= helpers.formatRole(item) %></option><% }) %></select></div>
+    <div class="col-md-2"><button class="btn btn-gradient w-100" type="submit">Filter</button></div>
+  </form>
+</div>
+<div class="panel-card table-responsive"><table class="table align-middle"><thead><tr><th>Foydalanuvchi</th><th>Rol</th><th>Hudud</th><th>Faollik</th><th>Sana</th></tr></thead><tbody><% items.forEach((item) => { %><tr><td><strong><%= item.name %></strong><div class="text-muted"><%= item.email %></div></td><td><span class="badge-soft-primary"><%= helpers.formatRole(item.role) %></span></td><td><%= item.region || '—' %></td><td><%= item.isActive ? 'Faol' : 'Bloklangan' %></td><td><%= helpers.formatDate(item.createdAt) %></td></tr><% }) %></tbody></table></div>

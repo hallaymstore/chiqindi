@@ -1,0 +1,62 @@
+<div class="row g-4">
+  <div class="col-lg-5">
+    <div class="panel-card">
+      <h3 class="mb-3">E'lon yuborish</h3>
+      <form method="post" action="/admin/notifications/announcement" class="row g-3">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <div class="col-md-6">
+          <label>Rol</label>
+          <select class="form-select" name="targetRole">
+            <option value="all">Barcha rollar</option>
+            <% roles.forEach((item) => { %>
+              <option value="<%= item %>"><%= helpers.formatRole(item) %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label>Link</label>
+          <input class="form-control" type="text" name="link" placeholder="/user/pickups" />
+        </div>
+        <div class="col-12">
+          <label>Sarlavha</label>
+          <input class="form-control" type="text" name="title" required />
+        </div>
+        <div class="col-12">
+          <label>Xabar</label>
+          <textarea class="form-control" rows="4" name="message" required></textarea>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-gradient" type="submit">Yuborish</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="col-lg-7">
+    <div class="panel-card table-responsive">
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th>Sarlavha</th>
+            <th>Rol / User</th>
+            <th>Holat</th>
+            <th>Sana</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% items.forEach((item) => { %>
+            <tr>
+              <td>
+                <strong><%= item.title %></strong>
+                <div class="text-muted"><%= item.message %></div>
+              </td>
+              <td><%= item.role || item.user || '-' %></td>
+              <td><span class="<%= item.isRead ? 'badge-soft-muted' : 'badge-soft-success' %>"><%= item.isRead ? "O'qilgan" : 'Yangi' %></span></td>
+              <td><%= helpers.formatDate(item.createdAt) %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

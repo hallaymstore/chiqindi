@@ -1,0 +1,4 @@
+<div class="row g-4">
+  <div class="col-lg-5"><div class="panel-card"><h3 class="mb-3">Yangi FAQ</h3><form method="post" action="/admin/faq" class="row g-3"><input type="hidden" name="_csrf" value="<%= csrfToken %>" /><div class="col-12"><label>Savol</label><input class="form-control" type="text" name="question" required /></div><div class="col-12"><label>Javob</label><textarea class="form-control" rows="5" name="answer" required></textarea></div><div class="col-12"><button class="btn btn-gradient" type="submit">Qo‘shish</button></div></form></div></div>
+  <div class="col-lg-7"><div class="panel-card"><div class="list-stack"><% faqs.forEach((item) => { %><div class="list-item"><div><strong><%= item.question %></strong><p><%= item.answer %></p></div></div><% }) %></div></div></div>
+</div>

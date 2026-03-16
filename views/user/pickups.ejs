@@ -1,0 +1,27 @@
+<div class="panel-card table-responsive">
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th>Toifa</th>
+        <th>Manzil</th>
+        <th>Haydovchi</th>
+        <th>Punkt / Zavod</th>
+        <th>Status</th>
+        <th>Baholangan summa</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% items.forEach((item) => { %>
+        <tr>
+          <td><strong><%= item.category?.name || '—' %></strong><div class="text-muted"><%= helpers.formatKg(item.estimatedWeight) %></div></td>
+          <td><%= item.address %></td>
+          <td><%= item.assignedCollector?.name || 'Biriktirilmagan' %></td>
+          <td><%= item.collectionPoint?.name || item.factory?.name || 'Jarayonda' %></td>
+          <td><span class="<%= helpers.statusBadgeClass(item.status) %>"><%= helpers.formatStatus(item.status) %></span></td>
+          <td><%= helpers.formatCurrency(item.finalAmount || item.estimatedAmount) %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <% if (!items.length) { %><div class="empty-state">Hozircha pickup so‘rovi yo‘q.</div><% } %>
+</div>

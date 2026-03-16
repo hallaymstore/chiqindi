@@ -1,0 +1,35 @@
+<aside class="dashboard-sidebar" id="dashboardSidebar">
+  <div>
+    <a href="/" class="dashboard-brand brand-mark">
+      <span class="brand-orb"></span>
+      <span>
+        <strong>ChiqindiBor</strong>
+        <small><%= helpers.formatRole(currentUser.role) %></small>
+      </span>
+    </a>
+
+    <div class="sidebar-profile glass-card">
+      <img src="<%= currentUser.avatar %>" alt="avatar" />
+      <div>
+        <h6><%= currentUser.name %></h6>
+        <span><%= helpers.formatRole(currentUser.role) %></span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <% dashboardNavigation.forEach((item) => { %>
+        <a href="<%= item.href %>" class="sidebar-link <%= currentPath.startsWith(item.href) ? 'active' : '' %>">
+          <i class="<%= item.icon %>"></i>
+          <span><%= item.label %></span>
+        </a>
+      <% }) %>
+      <a href="/profil" class="sidebar-link <%= currentPath.startsWith('/profil') ? 'active' : '' %>"><i class="ri-user-settings-line"></i><span>Profil</span></a>
+      <a href="/bildirishnomalar" class="sidebar-link <%= currentPath.startsWith('/bildirishnomalar') ? 'active' : '' %>"><i class="ri-notification-3-line"></i><span>Bildirishnomalar</span></a>
+    </nav>
+  </div>
+
+  <form method="post" action="/logout" class="sidebar-logout">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+    <button class="btn btn-gradient w-100" type="submit">Hisobdan chiqish</button>
+  </form>
+</aside>
